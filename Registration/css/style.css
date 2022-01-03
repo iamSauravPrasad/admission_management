@@ -56,13 +56,19 @@
 }
 
 .form-button {
-  background: linear-gradient(180deg, #808080, #2a2a2a);
-  border: none;
-  border-radius: 0;
-  color: white;
+  color: #fff;
+  border-radius: 4px;
+  padding: 7px 25px 8px 25px;
+  white-space: nowrap;
+  transition: 0.3s;
+  font-size: 14px;
   display: inline-block;
-  padding: 10px;
-  font-size: 16px;
+  border: 2px solid #ffc451;
+}
+.form-button:hover
+{
+  background: #ffbb38;
+  color: #343a40;
 }
 
 :required + .message::before {
@@ -130,4 +136,39 @@
 .website-field:focus:invalid + .message::after {
   color: orange;
   content: "Required valid URL";
+}
+
+body
+{
+  background: black;
+}
+.rt-heading
+{
+  position: relative;
+  -webkit-box-reflect: below -12px linear-gradient(transparent, rgba(0,0,0,0.2));
+}
+.rt-heading span
+{
+  position:relative ;
+  display: inline-block;
+  color: orange;
+  font-size: 2em;
+  text-transform: uppercase;
+  animation: animate 1s ease-in-out infinite;
+  animation-delay: calc(0.1s*var(--i));
+}
+@keyframes animate
+{
+  0%
+  {
+    transform: translateY(0px);
+  }
+  20%
+  {
+    transform: translateY(-20px);
+  }
+  40%,100%
+  {
+    transform: translateY(0px);
+  }
 }
