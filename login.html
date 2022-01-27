@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+  
+<head>
+    <title>Table</title>
+    
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+
+<link href="assets/css/style.css" rel="stylesheet">
+
+<link href="assets/css/style1.css" rel="stylesheet">
+
+<!-- 
+<link href="responsive.css" rel="stylesheet"> -->
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<!-- 
+<link href="color-switcher-design.css" rel="stylesheet"> -->
+
+    <!-- CSS -->
+    <style>
+        body{
+         background-color: #000000;
+background-image: linear-gradient(147deg, #000000 0%, #2c3e50 74%);
+        }
+         
+ th{
+     color:#ffee00;
+
+     padding: 10px;
+     border: 1px solid white;
+border-radius: 10px;
+ }
+ h1, td{
+     color: white;
+     padding: 10px;
+     border: 1px solid white;
+border-radius: 10px;
+ }
+    </style>
+  
+    <!--JavaScript-->
+    <script>
+    var v=0;
+    var id;
+    var xmlDoc;
+        function loadXMLDoc() {
+            if(window.XMLHttpRequest)
+            {
+                xhttp=new XMLHttpRequest();
+            }
+            else{
+                xhttp=new ActiveXObject("Microsoft.XMLHTTP")
+            }
+            xhttp.open("GET","NewFile.xml",false);
+            xhttp.send();
+           xmlDoc =  xhttp.responseXML;
+           empDetails();
+        }
+
+        function remove(i)
+        {
+           y=xmlDoc.getElementsByTagName('exam')[i];
+           xmlDoc.documentElement.removeChild(y);
+           alert('The Element has been removed!');
+           empDetails();
+        }
+
+        function display(i)
+        {
+            id=i
+            var x = document.getElementById("changeRecordForm");
+            var y = xmlDoc.getElementsByTagName("Applicantid")[i].childNodes[0];
+            x.elements[0].value = y.nodeValue
+            y = xmlDoc.getElementsByTagName("invi")[i].childNodes[0];
+            x.elements[1].value = y.nodeValue
+            y = xmlDoc.getElementsByTagName("timedate")[i].childNodes[0];
+             x.elements[2].value = y.nodeValue
+            $("#changedata").modal()
+        }
+
+        function change()
+        {
+            i=id
+            var x = document.getElementById("changeRecordForm");
+            var j=0;
+            var y = xmlDoc.getElementsByTagName("Applicantid")[i].childNodes[0];
+            y.nodeValue = x.elements[0].value;
+            console.log(y.nodevalue);
+            y = xmlDoc.getElementsByTagName("invi")[i].childNodes[0];
+            y.nodeValue = x.elements[1].value;
+            y = xmlDoc.getElementsByTagName("timedate")[i].childNodes[0];
+            y.nodeValue = x.elements[2].value;
+            document.getElementById("changeRecordForm").reset();
+            
+           alert('The Element has been updated!');
+           empDetails();
+        }
+
+        function addNewRecord()
+        {
+            var i;
+            var event = []
+            var x = document.getElementById("addRecordForm")
+            events = xmlDoc.createElement("exam")
+            event[0] = xmlDoc.createElement("Applicantid")
+            event[1] = xmlDoc.createElement("invi")
+            event[2] = xmlDoc.createElement("timedate")
+            for(i=0; i<3; i++)
+            {
+                event[i].appendChild(xmlDoc.createTextNode(x.elements[i].value))
+                events.appendChild(event[i])
+            }
+            xmlDoc.documentElement.appendChild(events);
+            document.getElementById("addRecordForm").reset();
+             alert('The Element has been added!');
+            empDetails();
+        }
+  
+        function empDetails() {
+            var i;
+            var table =
+                `<tr><th>Applicant ID</th><th>Invigilator ID</th>
+                    <th>Date-Time</th><th>Edit</th><th>Delete</th>
+                </tr>`;
+                
+            var x = xmlDoc.getElementsByTagName("exam");
+            
+  
+            // Start to fetch the data by using TagName 
+            for (i = 0; i < x.length; i++) {
+                // s_no = i+1;
+                table += "<tr><td>" + 
+                    x[i].getElementsByTagName("Applicantid")[0]
+                    .childNodes[0].nodeValue + "</td><td>" +
+                    x[i].getElementsByTagName("invi")[0]
+                    .childNodes[0].nodeValue + "</td><td>" +
+                    x[i].getElementsByTagName("timedate")[0]
+                    .childNodes[0].nodeValue + "</td>" +
+                    "<td><span class='material-icons' onclick='display("+i+")'>edit</span></td>"+
+                    "<td><span class='material-icons' onclick='remove("+i+")'>delete</span></td></tr>";
+
+            }
+  
+            // Print the xml data in table form
+            document.getElementById("id").innerHTML = table;
+        }
+        
+    </script>
+    
+</head>
+  
+<body onload="loadXMLDoc()" bgcolor="black">
+    <!-- Vertical navbar -->
+  <div class="page-content p-5" id="content">
+    <span class='material-icons' style="color: white;" data-toggle="modal" data-target="#adddata">add</span>
+        <!-- </button> -->
+  
+  <!-- Modal -->
+    <div class="modal fade" id="adddata" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Change Record</h5><br>
+            
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+              <form id="addRecordForm">
+                  <lable class="modal-content" style="width: 200px; float:left; border: 0px;">Applicant id</lable>
+                  <input class="modal-content" style="width: 200px;" type="text" id="Applicantid"></input><br><br>
+                  <lable class="modal-content" style="width: 200px; float:left; border: 0px;">Invigilator</lable>
+                  <input class="modal-content" style="width: 200px; float:left;" type="text" id="invi"></input><br><br>
+                  <lable class="modal-content" style="width: 200px; float:left; border: 0px;">Date-Time</Date-Time></lable>
+                  <input class="modal-content" style="width: 200px; float:left;"type="text" id="timedate"></input><br><br>
+              </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" onclick="addNewRecord();">Add Data</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <!--New Modal-->
+  <div class="modal fade" id="changedata" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Change Record</h5><br>
+          
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form id="changeRecordForm">
+                <lable class="modal-content" style="width: 200px; float:left; border: 0px;">Applicant id</lable>
+                <input class="modal-content" style="width: 200px;" type="text" id="no"></input><br>
+                <lable class="modal-content" style="width: 200px; float:left; border: 0px;">Invigilator</lable>
+                <input class="modal-content" style="width: 200px; float:left;" type="text" id="name"></input><br><br>>
+                <label class="modal-content" style="width: 200px; float:left; border: 0px;">Date-Time</label>
+                <input class="modal-content" style="width: 200px; float:left;" type="text" id="date"></input><br><br>
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" onclick="change();">Update Data</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    
+  <section class="banner-section">
+    <table id="id"></table>
+    </section>
+    
+  </div>
+
+    <script src="assets/js/jquery.js"></script>
+
+<script src="assets/js/bootstrap.min.js"></script>
+
+
+</body>
+  
+</html>

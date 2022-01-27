@@ -61,17 +61,17 @@
 
                         <div class="field-row">
                             <label class="form-label" for="firstName">First name</label>
-                            <input type="text" id="firstName" class="field text-field first-name-field" required>
+                            <input type="text" id="fname" class="field text-field first-name-field" required>
                             <span class="message"></span>
                         </div>
                         <div class="field-row">
                             <label class="form-label cf" for="lastName">Last name</label>
-                            <input type="text" id="lastName" class="field text-field last-name-field" required>
+                            <input type="text" id="lname" class="field text-field last-name-field" required>
                             <span class="message"></span>
                         </div>
                         <div class="field-row">
                             <label class="form-label" for="initials">Father Name</label>
-                            <input type="text" id="initials" class="field text-field initials-field">
+                            <input type="text" id="fname" class="field text-field initials-field">
                         </div>
 
 
@@ -84,21 +84,11 @@
 
                         <div class="field-row">
                             <label class="form-label" for="tel">Tel</label>
-                            <input type="tel" id="tel" class="field text-field tel-field" required>
+                            <input type="tel" id="phone" class="field text-field tel-field" required>
                             <span class="message"></span>
                         </div>
 
-                        <div class="field-row">
-                            <label class="form-label" for="hs">High School Name</label>
-                            <input type="text" id="hs" class="field text-field hs-field" required>
-                            <span class="message"></span>
-                        </div>
-
-                        <div class="field-row">
-                            <label class="form-label" for="tel">Permanent Address</label>
-                            <input type="tel" id="tel" class="field text-field address-field" required>
-                            <span class="message"></span>
-                        </div>
+                        
                         <div class="field-row">
                             <label class="form-label">Your Level</label>
                             <select class="form-dropdown field">
@@ -135,7 +125,17 @@
                                 <option value="5th Year"> 10th standard </option>
                             </select>
                         </div>
+                        <div class="field-row">
+                            <label class="form-label" for="hs">Password</label>
+                            <input type="password" id="pswd" class="field text-field hs-field" required>
+                            <span class="message"></span>
+                        </div>
 
+                        <div class="field-row">
+                            <label class="form-label" for="tel">Confirm Password</label>
+                            <input type="password" id="rpswd" class="field text-field address-field" required>
+                            <span class="message"></span>
+                        </div>
                         <div class="field-row">
                             <label class="form-label"></label>
                             <button class="form-button" style="color: #0f0f0f;">Register</button>
@@ -157,3 +157,82 @@
 </body>
 
 </html>
+<script>
+    var fname = document.getElementById('fname');
+    var lname = document.getElementById('lname');
+    var number = document.getElementById('phone');
+    var email = document.getElementById('email');
+    var pswd = document.getElementById('pswd');
+    var rpswd = document.getElementById('rpswd');
+    var span = document.getElementsByTagName('span');
+    function test(event)
+          {
+              let code=event.which;
+              if(code>47&&code<58)
+              return false;
+              else
+              return true;
+          }
+    fname.onkeydown = function() {
+      const reg = /^[a-zA-Z]{6,}$/;
+      if (reg.test(fname.value)) {
+        span[20].innerText = "Your First Name is Valid";
+        span[20].style.color = "purple";
+      } else {
+        span[20].innerText = "Should consist 6 letters";
+        span[20].style.color = "red";
+      }
+    }
+    lname.onkeydown = function() {
+      const reg = /^[a-zA-Z]{1,}$/;
+      if (reg.test(fname.value)) {
+        span[21].innerText = "Your last Name is Valid";
+        span[21].style.color = "purple";
+      } else {
+        span[21].innerText = "Should consist 6 letters";
+        span[21].style.color = "red";
+      }
+    }
+    number.onkeydown = function() {
+      const regnum = /^[0-9]{10}$/;
+      if (regnum.test(number.value)) {
+        span[23].innerText = "Your Number is Valid";
+        span[23].style.color = "purple";
+      } else {
+        span[23].innerText = "Should contain only 10 digits";
+        span[23].style.color = "red";
+      }
+    }
+    email.onkeydown = function() {
+      const regex1 = /^([a-z0-9\.\-_]{5,25})@christuniversity.in$/;
+      const regex2 = /^([a-z0-9\.\-_]{5,25})@christuniversity.in/;
+      if (regex1.test(email.value) || regex2.test(email.value)) {
+        span[24].innerText = "Your Email is Valid";
+        span[24].style.color = "purple";
+      } else {
+        span[24].innerText = "Invalid Email Id";
+        span[24].style.color = "red";
+      }
+    }
+    pswd.onkeydown = function() {
+      const regpswd = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[~`!@#$%^&*\(\)\-_+={}\[\]|\\;:"<>,./?])[a-zA-Z\d~`!@#$%^&*\(\)\-_+={}\[\]|\\;:"<>,./?]{2,}$/;
+      if (regpswd.test(pswd.value)) {
+        span[25].innerText = "Strong Password ";
+        span[25].style.color = "purple";
+      } else {
+        span[25].innerText = "Weak Password";
+        span[25].style.color = "red";
+      }
+    }
+    rpswd.onkeydown = function() {
+      psd = pswd.value;
+      rpsd = rpswd.value;
+      if (psd.match(rpsd)) {
+        span[26].innerText = "Password is Matches";
+        span[26].style.color = "purple";
+      } else {
+        span[26].innerText = "Password doesn't match";
+        span[26].style.color = "red";
+      }
+    }
+  </script>
