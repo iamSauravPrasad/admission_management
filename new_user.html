@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<head>
+   
+   <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookies</title>
+
+    <meta name="author" content="Codeconvey" />
+    
+    <link rel="stylesheet" href="css/style.css">
+   <style>
+      body {
+         /* background-color: blanchedalmond ; */
+      overflow-x: hidden;
+      }
+      input {
+         color:black !important;
+         border:2px solid #000000 !important; 
+
+      }
+
+      /* ::selection {
+        background-color: black !important; 
+        color: white !important; 
+        border:1px solid !important; 
+        border-color:white !important;
+      };
+      select option  {
+        background-color: black !important; 
+        color: white !important; 
+        border:1px solid !important; 
+        border-color:white !important;
+      }; */
+   </style>
+   <!--JavaScript-->
+   <script></script>
+</head>
+       <body onload="defcolor()">
+   <!-- Vertical navbar -->
+
+
+   <!-- </div> style="background-color: blanchedalmond;"> -->
+   <div class="rt-container">
+    <div class="col-rt-12">
+        <div class="Scriptcontent">
+
+            <form class="reg-form">
+
+            <div class="title">Add New User</div>
+         
+              </div>
+            
+              
+    
+      <form id = "frm" >
+        <div class="rt-container">
+            <div class="col-rt-12">
+                
+        
+                    <!-- Start Student Registration Form -->
+                    
+            <div style="align:right" >
+               <select id="bg_color" onchange="chngcolor()">
+                  <option value="pink">Pink</option>
+                  <option value="cadetblue">cadetblue</option>
+                  <option value="yellow">Yellow</option>
+               </select>
+            </div>
+            
+   
+        <div>
+            <div class="field-row">
+                <label class="form-label" for="firstName">Name</label>
+                <input type="text" id="name" class="field text-field first-name-field" required>
+                <span class="message"></span>
+            </div>
+            <div class="field-row">
+                <label class="form-label" for="email">Email</label>
+                <input type="email" id="email" class="field text-field email-field" required>
+                <span class="message"></span>
+            </div>
+            <div class="field-row">
+                <label class="form-label" for="dateOfBirth">Date of birth</label>
+                <input type="date" id="dob" class="field date-field dob-field" min="1900-01-01"
+                    max="2015-09-18" required>
+                <span class="message"></span>
+                </div>
+          
+            
+      
+     
+    
+        <div class="field-row">
+         
+
+         <input type="submit"  class="btn btn-light inline" value="Add Cookie" style="color: #0f0f0f;"onclick="addcookie()"/><br/><br/>
+         <input type="button" value="Get Cookies" class="btn btn-light inline" style="color: #0f0f0f;"onclick="readcookie()"/><br/><br/>
+         <input type="button" value="Remove Cookies" class="btn btn-light inline"style="color: #0f0f0f;" onclick="removecookie()"/>
+      </div>
+   
+   </form>
+   
+
+
+   
+ 
+</body>
+</form>
+</html>
+<script>
+    
+
+    function test(event)
+        {
+            let code=event.which;
+            if(code>47&&code<58)
+            return false;
+            else
+            return true;
+        }
+      function defcolor() 
+        {
+           
+         // alert("ÿes");
+            var i=0;
+            var list="";
+            if(document.cookie.length!=0)
+            {
+              
+               // alert("in");
+               list = document.cookie.split('; ');
+            for(i=0;i<list.length; i++)
+            {
+               // alert("in for");
+               if(list[i].split('=')[0]=="color")
+               {
+                  //alert("in if");
+                  document.body.style.backgroundColor = list[i].split('=')[1];
+               //  document.body.style.backgroundColor = list[i].split('=')[1];
+               //  document.getElementsByClassName(frm).style.backgroundColor = list[i].split('=')[1];
+               //  document.getElementsByClassName(frm).style.backgroundColor = list[i].split('=')[1];
+                  document.getElementById("bg_color").value = list[i].split('=')[1];
+               }
+            }          
+            }
+            else{
+               // alert("no");
+            }
+            
+        }
+        function chngcolor()
+        {
+         var bg = document.getElementById("bg_color").value;
+         document.cookie = 'color='+ bg + ";expires=Sun,6 Feb 2022 00:00:00 UTC;";
+         // alert(document.cookie);
+         localStorage.setItem('color',bg)
+         sessionStorage.setItem('color', bg)
+         document.body.style.backgroundColor = bg;
+         // document.getElementById(frm).style.backgroundColor = bg;
+         //        document.getElementsByClassName(frm).style.backgroundColor = bg;
+         }
+
+        function addcookie()
+        {
+         //  alert("Enter");
+          var name = document.getElementById("name").value;
+        
+           var email = document.getElementById("email").value;
+           var dob = document.getElementById("dob").value;
+           if((name.trim != "") &&(email.trim != "") && (dob.trim != ""))
+           {
+            // alert("Entr");
+              document.cookie="name="+name+";expires=Sun,6 Feb 2022 00:00:00 UTC;";
+              document.cookie="email="+email+";expires=Sun,6 Feb 2022 00:00:00 UTC;";
+              document.cookie="dob="+dob+";expires=Sun,6 Feb 2022 00:00:00 UTC;";
+              localStorage.setItem('name',name);
+              localStorage.setItem('email',email);
+              localStorage.setItem('dob',dob);
+              sessionStorage.setItem('name',name);
+              sessionStorage.setItem('email',email);
+              sessionStorage.setItem('dob',dob);
+              alert("cookie Added");
+              
+           }
+           else{
+              alert("Error");
+           }
+        }
+
+        function removecookie()
+        {
+         document.cookie="name=;expires=Sun,6 Feb 2022 00:00:00 UTC;";
+              document.cookie="email=;expires=Sun,6 Feb 2022 00:00:00 UTC;";
+              document.cookie="dob=;expires=Sun,6 Feb 2022 00:00:00 UTC;";
+              localStorage.removeItem(name);
+              localStorage.removeItem(email);
+              localStorage.removeItem(dob);
+              sessionStorage.removeItem(name);
+              sessionStorage.removeItem(email);
+              sessionStorage.removeItem(dob);
+              alert("Cookie Removed");
+        }
+
+        function readcookie()
+        {
+           var i;
+           var a="";
+           var list = document.cookie.split('; ');
+           for(i=0;i<list.length; i++)
+           {
+              a += list[i].split('=')[0] +": "+ list[i].split('=')[1]+"\n"
+           }
+           alert(a);
+        }
+</script>

@@ -1,0 +1,98 @@
+<!DOCTYPE html >
+<html lang="en" ng-app="myapp">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <script src="angular.min.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <!-- <link href="trainreservation/css/bootstrap.css" rel="stylesheet"> -->
+
+    <!-- <link href="style.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+   <link rel="stylesheet" href="trainreservation/css/bootstrap.css"> -->
+    
+        
+    <!-- <link href="css/responsive.css" rel="stylesheet"> -->
+    
+    <script src="try.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <style>
+        body,
+        th{
+            background-color: black !important;
+            color:#ec167f;
+            padding: 10px;
+            border: 1px solid rgb(252, 250, 250);
+border-radius: 10px;
+        }
+        h1, td{
+            color: rgb(255, 253, 253);
+            padding: 10px;
+            border: 1px solid rgb(252, 250, 250);
+border-radius: 10px;
+        }
+        label{
+            color: rgb(255, 253, 253);
+        }
+    </style>
+</head>
+<body ng-controller="myctrl">
+    <!-- <div ng-controller="myctrl">  -->
+       <!-- <div class="input-box" style="padding-top: 0 !important; margin-top: 0 !important;">
+            <i class="fas fa-user"></i>
+           <label>Rows To be diplayed : </label> <input type="number" class="modal-content"style="padding-top: 0 !important; margin-top: 0 !important;" id="name" step="1" min="0" max="6" ng-model="rowlimit" required><br><br>
+       </div> -->
+       <div class="input-box" style="padding-top: 0 !important; margin-top: 0 !important;">
+       
+       <input type="text" class="modal-content" id="search" placeholder="Enter the Train available to be searched"  ng-model="search" required><br><br>
+   </div>
+        
+       
+   <table>
+    <!-- <input type="text" ng-model="limit"/></th> -->
+     <tr>
+         <th>ID<br>
+          <input type="text" ng-model="search.id"/></th>
+         <th>Name<br>
+          <input type="text" ng-model="search.name"/></th>
+         <th>Number<br>
+          <input type="text" ng-model="search.number"/></th>
+         <th>E-mail<br>
+          <input type="text" ng-model="search.email"/></th>
+         <th>Event ID<br>
+          <input type="text" ng-model="search.eid"/></th>
+        
+     </tr>
+         <tr ng-repeat="data in names|filter:search">
+             <td>{{data.id|number:0}}</td>
+             <td>{{data.name|myfilter}}</td>
+             <td>{{data.number}}</td>
+             <td>{{data.email|myfilter1}}</td>
+             <td>{{data.eid|number:0}}</td>
+         </tr>
+    
+ </table>
+ 
+     </div>
+     <!-- </div> -->
+     
+ <!-- </body>
+ </html>
+        <tr ng-repeat="data in names|limitTo:rowlimit|filter:search">
+            <td>{{data.trainno|myfilter:limit}}</td>
+            <td>{{data.date|date:"dd/MM/yyyy"}}</td>
+            <td>{{data.destination|myfilter:limit}}</td>
+            <td>{{data.source|myfilter:limit}}</td>
+        
+
+        </tr>
+   
+</table> -->
+
+    <!-- </div> -->
+    
+</body>
+</html>
