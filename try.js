@@ -2,7 +2,7 @@
     var myapp=angular.module("myapp",[]);
     myapp.controller("myctrl",function($scope,$http)
    {
-       $http.get('https://deepit15.github.io/event/data.json')
+       $http.get('https://ksauravp.github.io/admission_management/data.json')
        .success(function(response)
        {
            $scope.names=response.records;
