@@ -1,4 +1,5 @@
 {"records":
+<<<<<<< HEAD
         [    
                 {"id":1,"name":"shilpa","number":"9654789335","email":"shilpa@gmail.com","eid":1},
                 {"id":2,"name":"saurav","number":"796547889","email":"saurav@gmail.com","eid":2},
@@ -13,3 +14,19 @@
                 
         ]
         }
+=======
+[    
+        {"id":1,"name":"shilpa","number":"9654789335","email":"shilpa@gmail.com","eid":1},
+        {"id":2,"name":"saurav","number":"796547889","email":"saurav@gmail.com","eid":2},
+        {"id":3,"name":"gupta","number":"789654778","email":"gupta@gmail.com","eid":3},
+        {"id":4,"name":"govind","number":"796547789","email":"govind@gmail.com","eid":4},
+        {"id":5,"name":"sachin","number":"796547789","email":"sachin@gmail.com","eid":5},
+        {"id":6,"name":"manish","number":"796547889","email":"manish@gmail.com","eid":6},
+        {"id":7,"name":"jawed","number":"796547889","email":"jawed@gmail.com","eid":7},
+        {"id":8,"name":"anurag","number":"96547889","email":"anurag@gmail.com","eid":8},
+        {"id":9,"name":"akhil","number":"65478996","email":"akhil@gmail.com","eid":9},
+        {"id":10,"name":"megha","number":"79547889","email":"megha@gmail.com","eid":10}
+        
+]
+}
+>>>>>>> 06734b94217261fba334a4ff49452c530ee3807a
