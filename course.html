@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<!--ng-app directive tells AngularJS that myApp
+	is the root element of the application -->
+<html ng-app="myApp">
+
+<head>
+    <!--import the angularjs libraries-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular.min.js">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular-route.min.js">
+    </script>
+    <!-- CSS only -->
+   <!-- <link href="index.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    JavaScript Bundle with Popper -->
+    
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/animate.min.css" rel="stylesheet">
+    <link href="css/prettyPhoto.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+    <link href="css/responsive.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<title>Train reservation</title>
+</head>
+
+<body>
+    <style>
+        a {
+            color: rgb(241, 206, 206);
+            background-color: rgb(0, 0, 0);
+            font-size: 30px;
+        }
+        body,
+        th{
+            background-color: black !important;
+            color:#ec167f;
+            padding: 10px;
+            border: 1px solid rgb(252, 250, 250);
+border-radius: 10px;
+        }
+        h1, td{
+            color: rgb(255, 253, 253);
+            padding: 10px;
+            border: 1px solid rgb(252, 250, 250);
+border-radius: 10px;
+        }
+        label{
+            color: rgb(255, 253, 253);
+        }
+    
+    </style>
+    <!--hg-template indicates the pages
+			that get loaded as per requirement-->
+    <div class="col">
+        <script type="text/ng-template" id="about.html">
+            <br>
+            <br>
+            <br>
+            <h1 style="color:pink;text-align:center">Admission Management</h1>
+            
+            
+        
+            <p class="responsive" style="font:25px timesnewroman;text-align:center"><br>{{message}}</p>
+        </script>
+        <!--
+            second controller 
+        -->
+        <script type="text/ng-template" id="train.html">
+            <div style="text-align: center;font-family: timesnewroman;font-size: 40px">Student details</div>
+
+            <div class="col">
+                <table >
+                    
+                        <tr>
+                            <th>ID<br>
+
+                            </th>
+                            <th>Name<br>
+
+                            </th>
+                            <th >Phone Number<br>
+
+                            </th>
+                            <th >E-mail<br>
+
+                            </th>
+                            <th >Admission-id<br>
+
+                            </th>
+
+
+                        </tr>
+                    
+                    <tbody>
+            </div>
+            <tr ng-repeat="item in names">
+                
+                <td>{{item.id}}</td>
+                <td>{{item.name|uppercase}}</td>
+                <td>{{item.number}}</td>
+                <td>{{item.email}}</td>
+                <td>{{item.eid|number:0}}</td>
+
+            </tr>
+
+            </tbody>
+            </table>
+
+        </script>
+        <!--
+            third controller
+        -->
+        <script type="text/ng-template" id="trains.html">
+            <div style="text-align: center;font-family: timesnewroman;font-size: 40px">Search Details</div>
+            <div class="row form-group" style="text-align: center">
+                <div class="col-4"></div>
+                <div class="col-4"><br><input class="form-control" type="text" placeholder="Search " ng-model="find"></div>
+                <div class="col-4"></div>
+            </div>
+            <div class="row form-group">
+                <div class="col-5"></div>
+                <div class="col-5"></div>
+            </div>
+            <div class="col">
+                <table >
+                   
+                        <tr>
+                            
+                                <div class ="row">
+                                  ROWS :<br><input type="number" ng-model="rowlimit">
+
+                                </div><br>
+                            
+                            <th scope="col">ID<br>
+                                <input type="text" ng-model="search.id">
+                            </th>
+                            <th scope="col">Name<br>
+                                <input type="text" ng-model="search.name">
+                            </th>
+                            <th scope="col">Phone number<br>
+                                <input type="text" ng-model="search.number">
+                            </th>
+                            <th scope="col">E-mail<br>
+                                <input type="text" ng-model="search.email">
+                            </th>
+                            <th scope="col">Admission id<br>
+                                <input type="text" ng-model="search.eid">
+                            </th>
+
+                        </tr>
+                   
+                    <tbody>
+            </div>
+            <tr ng-repeat="item in names|filter:search|filter:find |filter:find2 |limitTo:rowlimit | orderBy:'-price'">
+                
+                <td>{{item.id}}</td>
+                <td>{{item.name|uppercase}}</td>
+                <td>{{item.number}}</td>
+                <td>{{item.email}}</td>
+                <td>{{item.eid|number:0}}</td>
+            </tr>
+            </tr>
+
+            </tbody>
+            </table>
+        </script>
+    </div>
+    <!--hyperlinks to load different
+			pages dynamically-->
+            <div class="collapse navbar-collapse navbar-right">
+                <ul class="nav navbar-nav">
+                    
+                    <li><a href="#/about">About - us</a></li>
+                    <li><a href="#/train">Student Details</a></li>
+                    <li><a href="#/trains">Search Details</a></li>
+                    </ul>
+                    </div>
+
+    <div ng-view></div>
+    <script type="text/javascript" src="test.js"></script>
+</body>
+
+</html>
