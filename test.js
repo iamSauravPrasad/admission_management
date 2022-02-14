@@ -25,7 +25,7 @@ app.config(function($routeProvider) {
 
 
 app.controller('FirstController', function($scope) {
-    $scope.message = 'A college fest is an integral part of not only its students life but also of the reputation of the college.So the fest needs to be up to the mark.';
+    $scope.message = 'Education is the key,to UNLOCKING the world, passport to freedom.ADMISSIONS NOW OPEN....';
 });
 
 app.controller('SecondController', function($scope, $http) {
