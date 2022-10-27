@@ -30,7 +30,7 @@ var connection=mysql.createConnection(
     })
     app.get('/admission_coordinator/:id',(req,res)=>
     {
-        connection.query('SELECT *FROM admission_coordinator WHERE co_id=?',[req.params.id],(err,rows,fields)=>
+        connection.query('SELECT * FROM admission_coordinator WHERE co_id=?',[req.params.id],(err,rows,fields)=>
         {
             if(!err)
             res.send(rows);
